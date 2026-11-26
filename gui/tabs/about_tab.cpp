@@ -24,9 +24,9 @@ namespace AboutTab {
         openCredits = group == Groups::Credits;
     }
 
-    const ImVec4 SickoCol = ImVec4(1.f, 0.f, 0.424f, 1.f);
-    const ImVec4 RedCol = ImVec4(1.f, 0.f, 0.f, 1.0f);
-    const ImVec4 AumCol = ImVec4(1.f, 0.3333f, 0.3333f, 1.0f);
+    const ImVec4 SickoCol = ImVec4(1.f, 1.f, 1.f, 1.f);
+    const ImVec4 RedCol = ImVec4(1.f, 1.f, 1.f, 1.f);
+    const ImVec4 AumCol = ImVec4(1.f, 1.f, 1.f, 1.f);
     const ImVec4 GoldCol = ImVec4(1.f, 0.7333f, 0.f, 1.0f);
     const ImVec4 GoatCol = ImVec4(0.937f, 0.004f, 0.263f, 1.0f);
     const ImVec4 DevCol = ImVec4(0.102f, 0.7373f, 0.6118f, 1.0f);
@@ -48,7 +48,7 @@ namespace AboutTab {
         if (openWelcome) {
             ImGui::Text(std::format("Welcome {}to ", State.HasOpenedMenuBefore ? "back " : "").c_str());
             ImGui::SameLine(0.0f, 0.0f);
-            ImGui::TextColored(SickoCol, "SickoMenu");
+            ImGui::TextColored(SickoCol, "ZetroMenuSkinChanger");
             ImGui::SameLine(0.0f, 0.0f);
             if (State.SickoVersion.find("pr") != std::string::npos || State.SickoVersion.find("rc") != std::string::npos)
                 ImGui::TextColored(PreReleaseCol, std::format(" {}", State.SickoVersion).c_str());
@@ -61,30 +61,26 @@ namespace AboutTab {
             ImGui::SameLine(0.0f, 0.0f);
             ImGui::Text("!");
 
-            ImGui::TextColored(SickoCol, "SickoMenu");
+            ImGui::TextColored(SickoCol, "ZetroMenuSkinChanger");
             ImGui::SameLine(0.0f, 0.0f);
-            ImGui::Text(" is a powerful utility for Among Us.");
-            ImGui::Text("It aims to improve the game experience for all players!");
-            ImGui::Text("Use the \"Check for Updates\" button to download the latest release!");
+            ImGui::Text(" is a skinchanger for Among Us");
+            ImGui::Text("It aims to unlock all skins!");
+            ImGui::Text("");
             if (ColoredButton(DevCol, "GitHub")) {
                 OpenLink("https://github.com/g0aty/SickoMenu");
             }
             ImGui::SameLine();
-            if (ColoredButton(GoldCol, "Check for Updates")) {
-                OpenLink("https://github.com/g0aty/SickoMenu/releases/latest");
-            }
-            ImGui::SameLine();
-            if (ColoredButton(State.RgbColor, "Donate")) {
+            if (ColoredButton(State.RgbColor, "Donate to SickoMenu")) {
                 OpenLink("https://ko-fi.com/g0aty");
             }
-            ImGui::Text("Join the Discord server for support, bug reports, and sneak peeks!");
+            ImGui::Text("Join the SickoMenu Server!");
             if (ColoredButton(ContributorCol, "Join our Discord!")) {
                 OpenLink("https://dsc.gg/sickos"); //SickoMenu discord invite
             }
 
-            ImGui::TextColored(SickoCol, "SickoMenu");
+            ImGui::TextColored(SickoCol, "ZetroMenuSkinChanger");
             ImGui::SameLine(0.0f, 0.0f);
-            ImGui::Text(" is free and open-source software.");
+            ImGui::Text(" is a free and open-source software to unlock skins, fork of SickoMenu!");
 
             if (State.SickoVersion.find("pr") != std::string::npos || State.SickoVersion.find("rc") != std::string::npos) {
                 if (State.SickoVersion.find("pr") != std::string::npos) ImGui::TextColored(State.RgbColor, "You have access to pre-releases, enjoy!");
@@ -93,8 +89,8 @@ namespace AboutTab {
                 BoldText("compiled, please report it to our support staff by making a ticket on our Discord server!", ImVec4(0.f, 1.f, 0.f, 1.f));
             }
             else {
-                ImGui::TextColored(ImVec4(1.f, 0.f, 0.f, 1.f), "If you've paid for this menu, demand a refund immediately.");
-                BoldText("Make sure you have downloaded the latest version of SickoMenu from GitHub or our", ImVec4(0.f, 1.f, 0.f, 1.f));
+                ImGui::TextColored(ImVec4(1.f, 0.f, 0.f, 1.f), "If you've paid for SkinChanger, demand a refund immediately.");
+                BoldText("Make sure you have downloaded the latest version of ZetroMenuSkinChanger", ImVec4(0.f, 1.f, 0.f, 1.f));
                 BoldText("official Discord!", ImVec4(0.f, 1.f, 0.f, 1.f));
             }
             //hopefully stop people from reselling a foss menu for actual money

@@ -16,10 +16,10 @@ static std::string CleanChatPresetName(std::string cpName) {
 }
 
 void Settings::Load() {
-    this->SickoVersion = "v5.1.3";
+    this->SickoVersion = "ZetroMenuSkinChanger";
 
     auto path = getModulePath(NULL);
-    auto configPath = path.parent_path() / "SickoMenu" / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-selected-config.json";
 
     if (!std::filesystem::exists(configPath)) {
         Save();
@@ -42,7 +42,7 @@ void Settings::Load() {
         //Log.Info("Unable to load sicko-selected-config.json");
     }
 
-    auto settingsPath = path.parent_path() / "SickoMenu" / "sicko-config" / std::format("{}.json", this->selectedConfig);
+    auto settingsPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-config" / std::format("{}.json", this->selectedConfig);
     if (!std::filesystem::exists(settingsPath))
         return;
 
@@ -57,126 +57,10 @@ void Settings::Load() {
         Log.Info(e.what()); \
     }
 
-        JSON_TRYGET("HasOpenedMenuBefore", this->HasOpenedMenuBefore);
-        JSON_TRYGET("ShowMenuOnStartup", this->ShowMenuOnStartup);
-        JSON_TRYGET("ShowMenuOnStartup", this->ShowMenu);
-        JSON_TRYGET("KeyBinds", this->KeyBinds);
 #ifdef _DEBUG
         JSON_TRYGET("ShowDebug", this->showDebugTab);
 #endif
-        JSON_TRYGET("dpiScale", this->dpiScale);
-        JSON_TRYGET("RgbTheme", this->RgbMenuTheme);
-        JSON_TRYGET("GradientTheme", this->GradientMenuTheme);
-        JSON_TRYGET("MatchBackgroundWithTheme", this->MatchBackgroundWithTheme);
-        JSON_TRYGET("SetName", this->SetName);
-        JSON_TRYGET("LightMode", this->LightMode);
-        JSON_TRYGET("MenuThemeColor_R", this->MenuThemeColor.x);
-        JSON_TRYGET("MenuThemeColor_G", this->MenuThemeColor.y);
-        JSON_TRYGET("MenuThemeColor_B", this->MenuThemeColor.z);
-        JSON_TRYGET("MenuThemeColor_A", this->MenuThemeColor.w);
-        JSON_TRYGET("MenuGradientColor1_R", this->MenuGradientColor1.x);
-        JSON_TRYGET("MenuGradientColor1_G", this->MenuGradientColor1.y);
-        JSON_TRYGET("MenuGradientColor1_B", this->MenuGradientColor1.z);
-        JSON_TRYGET("MenuGradientColor1_A", this->MenuGradientColor1.w);
-        JSON_TRYGET("MenuGradientColor1_A", this->MenuGradientColor1.w);
-        JSON_TRYGET("MenuGradientColor2_R", this->MenuGradientColor2.x);
-        JSON_TRYGET("MenuGradientColor2_G", this->MenuGradientColor2.y);
-        JSON_TRYGET("MenuGradientColor2_B", this->MenuGradientColor2.z);
-        JSON_TRYGET("MenuGradientColor2_A", this->MenuGradientColor2.w);
         JSON_TRYGET("UnlockCosmetics", this->UnlockCosmetics);
-        JSON_TRYGET("GameFPS", this->GameFPS);
-        JSON_TRYGET("KeybindsWhileChatting", this->KeybindsWhileChatting);
-        JSON_TRYGET("SpoofLevel", this->SpoofLevel);
-        JSON_TRYGET("FakeLevel", this->FakeLevel);
-        JSON_TRYGET("SpoofFriendCode", this->SpoofFriendCode);
-        JSON_TRYGET("UseNewFriendCode", this->UseNewFriendCode);
-        //JSON_TRYGET("GuestPuid", this->GuestPuid);
-        //JSON_TRYGET("UseGuestPuid", this->UseGuestPuid);
-        JSON_TRYGET("NewFriendCode", this->NewFriendCode);
-        JSON_TRYGET("FakeFriendCode", this->FakeFriendCode);
-        JSON_TRYGET("SpoofPlatform", this->SpoofPlatform);
-        JSON_TRYGET("FakePlatform", this->FakePlatform);
-        JSON_TRYGET("SpoofPsnId", this->SpoofPsnId);
-        JSON_TRYGET("FakePsnId", this->FakePsnId);
-        JSON_TRYGET("SpoofXboxId", this->SpoofXboxId);
-        JSON_TRYGET("FakeXboxId", this->FakeXboxId);
-        JSON_TRYGET("SpoofPlName", this->SpoofPlName);
-        JSON_TRYGET("FakePlName", this->FakePlName);
-        JSON_TRYGET("UseCustomServer", this->UseCustomServer);
-        JSON_TRYGET("FakePlName", this->FakePlName);
-        JSON_TRYGET("CustomServerIp", this->CustomServerIp);
-        JSON_TRYGET("CustomServerPort", this->CustomServerPort);
-        JSON_TRYGET("ForceDTLS", this->ForceDTLS);
-        JSON_TRYGET("SpoofGuestAccount", this->SpoofGuestAccount);
-        // JSON_TRYGET("SpoofAUVersion_", this->SpoofAUVersion); // putting an underscore to reset version spoofing, remove to reset again
-        // JSON_TRYGET("FakeAUVersion_", this->FakeAUVersion);
-        JSON_TRYGET("PanicWarning", this->PanicWarning);
-        JSON_TRYGET("DisableAnimations", this->DisableAnimations);
-        JSON_TRYGET("ClickThroughMenuUI", this->ClickThroughMenuUI);
-        JSON_TRYGET("AnimationSpeed", this->AnimationSpeed);
-        JSON_TRYGET("ShowUiBorders", this->ShowUiBorders);
-        JSON_TRYGET("RoundingRadiusMultiplier", this->RoundingRadiusMultiplier);
-        this->RoundingRadiusMultiplier = std::clamp(this->RoundingRadiusMultiplier, 0.f, 2.f);
-        JSON_TRYGET("ExtraCommands", this->ExtraCommands);
-
-        JSON_TRYGET("ToastsOnTop", this->ToastsOnTop);
-        JSON_TRYGET("ToastPositionX", this->ToastPositionX);
-        JSON_TRYGET("MaxToasts", this->MaxToasts);
-        JSON_TRYGET("ToastMaxDuration", this->ToastMaxDuration);
-
-        // JSON_TRYGET("NoAbilityCD", this->NoAbilityCD);
-        JSON_TRYGET("DarkMode", this->DarkMode);
-        JSON_TRYGET("CustomGameTheme", this->CustomGameTheme);
-        JSON_TRYGET("GameTextColor_R", this->GameTextColor.x);
-        JSON_TRYGET("GameTextColor_G", this->GameTextColor.y);
-        JSON_TRYGET("GameTextColor_B", this->GameTextColor.z);
-        JSON_TRYGET("GameBgColor_R", this->GameBgColor.x);
-        JSON_TRYGET("GameBgColor_G", this->GameBgColor.y);
-        JSON_TRYGET("GameBgColor_B", this->GameBgColor.z);
-        JSON_TRYGET("SeeVanishedPlayers", this->SeeVanishedPlayers);
-        JSON_TRYGET("SelectedColorId", this->SelectedColorId);
-        JSON_TRYGET("SnipeColor", this->SnipeColor);
-        JSON_TRYGET("CycleBetweenPlayers", this->CycleBetweenPlayers);
-        //JSON_TRYGET("CycleBetweenOutfits", this->CycleBetweenOutfits);
-        //JSON_TRYGET("ChangeBodyType", this->ChangeBodyType);
-        //JSON_TRYGET("BodyType", this->BodyType);
-        JSON_TRYGET("ShowTime", this->ShowTime);
-        JSON_TRYGET("TimeOffsetMinutes", this->TimeOffsetMinutes);
-        JSON_TRYGET("NegativeTimeOffset", this->NegativeTimeOffset);
-        JSON_TRYGET("Use12HourFormat", this->Use12HourFormat);
-        JSON_TRYGET("ShowSeconds", this->ShowSeconds);
-        JSON_TRYGET("UseLeadingZeroForHours", this->UseLeadingZeroForHours);
-        JSON_TRYGET("AmString", this->AmString);
-        JSON_TRYGET("PmString", this->PmString);
-        JSON_TRYGET("CycleInMeeting", this->CycleInMeeting);
-        JSON_TRYGET("CycleTimer", this->CycleTimer);
-        JSON_TRYGET("CyclerUserNames", this->cyclerUserNames);
-        //JSON_TRYGET("playerOutfits", this->playerOutfits);
-        JSON_TRYGET("HostUsername", this->hostUserName);
-        JSON_TRYGET("ChatMessage", this->chatMessage);
-        JSON_TRYGET("CycleName", this->CycleName);
-        JSON_TRYGET("CycleColor", this->RandomColor);
-        JSON_TRYGET("CycleHat", this->RandomHat);
-        JSON_TRYGET("CycleVisor", this->RandomVisor);
-        JSON_TRYGET("CycleSkin", this->RandomSkin);
-        JSON_TRYGET("CyclePet", this->RandomPet);
-        JSON_TRYGET("CycleNamePlate", this->RandomNamePlate);
-        JSON_TRYGET("PlayerSpeed", this->PlayerSpeed);
-        JSON_TRYGET("MultiplySpeed", this->MultiplySpeed);
-        JSON_TRYGET("KillDistance", this->KillDistance);
-        JSON_TRYGET("ModifyKillDistance", this->ModifyKillDistance);
-        JSON_TRYGET("ModifyTaskBarUpdates", this->ModifyTaskBarUpdates);
-        JSON_TRYGET("UserName", this->userName);
-        JSON_TRYGET("ShowGhosts", this->ShowGhosts);
-        JSON_TRYGET("ShowPhantoms", this->ShowPhantoms);
-        JSON_TRYGET("ShowPlayersInVents", this->ShowPlayersInVents);
-        JSON_TRYGET("FakeRole", this->FakeRole);
-        JSON_TRYGET("FakeRoleId", this->FakeRoleId);
-        JSON_TRYGET("AutoFakeRole", this->AutoFakeRole);
-        JSON_TRYGET("PauseVentBlockingWhileVenting", this->PauseVentBlockingWhileVenting);
-        JSON_TRYGET("RandomSpawns", this->RandomSpawns);
-
-        JSON_TRYGET("AutoApplyHostPreset", this->AutoApplyHostPreset);
         if (j.contains("HostPresets") && j["HostPresets"].is_array()) {
             this->HostPresets.clear();
             for (auto& p : j["HostPresets"]) {
@@ -727,13 +611,13 @@ void Settings::Load() {
 
 void Settings::SaveConfig() {
     auto path = getModulePath(NULL);
-    std::filesystem::create_directory(path.parent_path() / "SickoMenu" / "sicko-config");
+    std::filesystem::create_directory(path.parent_path() / "ZetroMenuSkinchanger" / "sicko-config");
 
     if (std::filesystem::exists(path / "sicko-selected-config.json")) {
-        std::filesystem::rename(path / "sicko-selected-config.json", path / "SickoMenu" / "sicko-selected-config.json");
+        std::filesystem::rename(path / "sicko-selected-config.json", path / "ZetroMenuSkinchanger" / "sicko-selected-config.json");
     }
 
-    auto configPath = path.parent_path() / "SickoMenu" / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-selected-config.json";
 
     if (this->selectedConfig != "") {
         try {
@@ -753,9 +637,9 @@ void Settings::SaveConfig() {
 void Settings::Save() {
     auto path = getModulePath(NULL);
 
-    std::filesystem::create_directories(path.parent_path() / "SickoMenu" / "sicko-config");
+    std::filesystem::create_directories(path.parent_path() / "ZetroMenuSkinchanger" / "sicko-config");
 
-    auto configPath = path.parent_path() / "SickoMenu" / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-selected-config.json";
 
     if (this->selectedConfig != "") {
         try {
@@ -769,7 +653,7 @@ void Settings::Save() {
         catch (...) {
             //Log.Info("Unable to save sicko-selected-config.json");
         }
-        auto settingsPath = path.parent_path() / "SickoMenu" / "sicko-config" /
+        auto settingsPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-config" /
             std::format("{}.json", GetAllConfigs().size() != 0 ? this->selectedConfig : "default");
 
         try {
@@ -1434,7 +1318,7 @@ void Settings::Save() {
 void Settings::Delete() {
     auto path = getModulePath(NULL);
 
-    auto configPath = path.parent_path() / "SickoMenu" / "sicko-config" / std::format("{}.json", this->selectedConfig);
+    auto configPath = path.parent_path() / "ZetroMenuSkinchanger" / "sicko-config" / std::format("{}.json", this->selectedConfig);
 
     std::filesystem::remove(configPath);
 }
